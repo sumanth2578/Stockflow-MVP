@@ -7,7 +7,7 @@ export async function GET(req: Request) {
   const session = await getServerSession(authOptions);
   const organizationId = (session?.user as any)?.organizationId;
 
-  if (!organizationId) {
+  if (!session || !organizationId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
   const organizationId = (session?.user as any)?.organizationId;
 
-  if (!organizationId) {
+  if (!session || !organizationId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -33,6 +33,7 @@ export async function POST(req: Request) {
       data: {
         ...data,
         organizationId,
+        lastUpdatedBy: session.user?.email || "System",
       },
     });
 

@@ -37,14 +37,14 @@ export default function Home() {
                 The simplest-possible way to sign up, manage products with SKUs, and monitor stock levels across your organization.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                <Link 
+                <Link
                   href="/auth/signup"
                   className="inline-flex items-center justify-center rounded bg-slate-900 px-10 py-3 text-sm font-bold text-white hover:bg-slate-800 transition-colors"
                 >
                   Create Account
                   <ChevronRight className="ml-2 h-4 w-4" />
                 </Link>
-                <Link 
+                <Link
                   href="/auth/signin"
                   className="inline-flex items-center justify-center rounded border border-slate-200 bg-white px-10 py-3 text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors"
                 >
@@ -60,7 +60,7 @@ export default function Home() {
       <footer className="border-t border-slate-100 py-8">
         <div className="container px-4 md:px-6 mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-400">
-            © 2026 StockFlow MVP. Assignment Submission.
+            © 2026 StockFlow MVP
           </p>
           <nav className="flex gap-6">
             <Link className="text-xs text-slate-400 hover:text-slate-900 transition-colors" href="#">

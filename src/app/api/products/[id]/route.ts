@@ -11,7 +11,7 @@ export async function PATCH(
   const organizationId = (session?.user as any)?.organizationId;
   const { id } = await params;
 
-  if (!organizationId) {
+  if (!session || !organizationId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -22,7 +22,10 @@ export async function PATCH(
         id,
         organizationId // Ensure product belongs to user's org
       },
-      data,
+      data: {
+        ...data,
+        lastUpdatedBy: session.user?.email || "System",
+      },
     });
 
     return NextResponse.json(product);
@@ -40,7 +43,7 @@ export async function DELETE(
   const organizationId = (session?.user as any)?.organizationId;
   const { id } = await params;
 
-  if (!organizationId) {
+  if (!session || !organizationId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

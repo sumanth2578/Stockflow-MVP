@@ -1,10 +1,12 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import Link from "next/link";
 import { 
   Package, 
   AlertCircle, 
-  TrendingUp 
+  TrendingUp,
+  ChevronRight
 } from "lucide-react";
 
 export default async function DashboardPage() {
@@ -37,15 +39,18 @@ export default async function DashboardPage() {
 
       {/* Stats Grid */}
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <div className="bg-white p-6 rounded border border-slate-200 shadow-sm">
+        <Link href="/dashboard/products" className="bg-white p-6 rounded border border-slate-200 shadow-sm hover:border-slate-900 transition-colors group">
           <div className="flex flex-col space-y-3">
-            <div className="flex items-center gap-2 text-slate-400">
-               <Package size={16} />
-               <span className="text-xs font-bold uppercase tracking-wider">Total Products</span>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-slate-400 group-hover:text-slate-900 transition-colors">
+                 <Package size={16} />
+                 <span className="text-xs font-bold uppercase tracking-wider">Total Products</span>
+              </div>
+              <ChevronRight size={14} className="text-slate-300 group-hover:text-slate-900 transition-colors" />
             </div>
             <p className="text-3xl font-extrabold text-slate-900">{totalProducts}</p>
           </div>
-        </div>
+        </Link>
 
         <div className="bg-white p-6 rounded border border-slate-200 shadow-sm">
           <div className="flex flex-col space-y-3">
